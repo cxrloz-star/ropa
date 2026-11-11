@@ -10,14 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-      }
-    }
-  </script>
 </head>
 <body>
   <div class="announcement">NUEVA COLECCIÓN · STREETWEAR ESSENTIALS <span>—</span> DROP 001</div>
@@ -65,22 +57,20 @@
       <div class="showroom">
         <div class="showroom-top">
           <span>VESTIDOR VIRTUAL <i>✳</i></span>
-          <span class="drag-hint"><b>↔</b> ARRASTRA PARA GIRAR</span>
+          <span class="drag-hint"><b>✦</b> EXPLORA LA COLECCIÓN</span>
         </div>
         <div class="stage" id="stage">
           <div class="stage-glow"></div>
           <button class="side-product side-product-left" id="previous-product" aria-label="Prenda anterior">
             <span class="side-product-image"></span><span class="side-product-label">ANTERIOR</span>
           </button>
-          <div class="model-loading" id="model-loading">PREPARANDO TU PRENDA<span>● ● ●</span></div>
-          <canvas id="product-canvas" aria-label="Modelo 3D de la prenda seleccionada"></canvas>
+          <div class="product-photo stage-photo" id="product-photo-wrap"><img id="product-photo" src="" alt="Fotografía de la prenda seleccionada"><span>FOTOGRAFÍA DE PRODUCTO</span></div>
           <button class="side-product side-product-right" id="next-product" aria-label="Prenda siguiente">
             <span class="side-product-image"></span><span class="side-product-label">SIGUIENTE</span>
           </button>
           <div class="stage-index"><span id="current-index">01</span><i>/</i><span id="total-index">08</span></div>
-          <button class="rotate-hint" id="auto-rotate" aria-label="Activar rotación automática">⟳ <span>ROTAR</span></button>
+          <button class="rotate-hint" id="auto-rotate" aria-label="Activar movimiento de imagen">⟳ <span>ANIMAR</span></button>
         </div>
-        <div class="product-photo"><img id="product-photo" src="" alt="Fotografía de la prenda seleccionada" loading="lazy"><span>FOTOGRAFÍA DE PRODUCTO</span></div>
         <div class="product-info">
           <div class="product-heading">
             <div><p class="eyebrow" id="product-category">HOODIE / OVERSIZED</p><h2 id="product-name">Heavyweight Hoodie</h2></div>
@@ -120,6 +110,7 @@
     <div class="cart-footer"><div><span>Subtotal</span><strong id="cart-subtotal">S/ 0.00</strong></div><button class="add-cart checkout-button" id="checkout-button">CONTINUAR <span>↗</span></button><small>Demo visual · No procesa pagos reales.</small></div>
   </aside>
 
-  <script type="module" src="js/main.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
