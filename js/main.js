@@ -1,8 +1,5 @@
-import { products } from "./products.js";
-import { ClothesScene } from "./scene.js";
-
 const $=id=>document.getElementById(id);
-const scene=new ClothesScene($("product-canvas"));
+const products=window.products;
 let visibleProducts=[...products],activeIndex=0,activeColor=null,activeSize="M",cart=[],favorites=new Set();
 const money=n=>"S/ "+n.toFixed(2);
 const current=()=>visibleProducts[activeIndex];
@@ -14,9 +11,6 @@ function renderProduct(){
  $("product-name").textContent=p.name;$("product-category").textContent=p.label;$("product-price").textContent=money(p.price);$("product-description").textContent=p.description;
  const photo=$("product-photo");photo.src=p.image;photo.alt=p.name+" — fotografía de referencia";photo.onerror=()=>{photo.style.display="none";photo.parentElement.classList.add("image-failed");};photo.onload=()=>{photo.style.display="block";photo.parentElement.classList.remove("image-failed");};
  $("current-index").textContent=String(products.indexOf(p)+1).padStart(2,"0");$("total-index").textContent=String(products.length).padStart(2,"0");
- $("model-loading").classList.remove("hidden");
- setTimeout(()=>$("model-loading").classList.add("hidden"),350);
- try{scene.setProduct(p,activeColor);}catch(error){console.warn("No se pudo mostrar el modelo 3D:",error);$("model-loading").classList.add("hidden");}
  $("color-options").innerHTML=p.colors.map(c=>`<button class="swatch ${c.hex===activeColor?"selected":""}" style="background:${c.hex}" title="${c.name}" aria-label="Color ${c.name}" data-color="${c.hex}"></button>`).join("");
  $("size-options").innerHTML=p.sizes.map(s=>`<button class="size-button ${s===activeSize?"selected":""}" data-size="${s}">${s}</button>`).join("");
  $("favorite-button").classList.toggle("selected",favorites.has(p.id));$("favorite-button").textContent=favorites.has(p.id)?"♥":"♡";
@@ -35,7 +29,7 @@ $("next-product").addEventListener("click",()=>setIndex(activeIndex+1));
 $("color-options").addEventListener("click",e=>{const b=e.target.closest("[data-color]");if(!b)return;activeColor=b.dataset.color;renderProduct();});
 $("size-options").addEventListener("click",e=>{const b=e.target.closest("[data-size]");if(!b)return;activeSize=b.dataset.size;renderProduct();});
 $("favorite-button").addEventListener("click",()=>{const id=current().id;favorites.has(id)?favorites.delete(id):favorites.add(id);renderProduct();showToast(favorites.has(id)?"Añadido a favoritos":"Eliminado de favoritos");});
-$("auto-rotate").addEventListener("click",()=>{const active=scene.toggleRotation();$("auto-rotate").classList.toggle("active",active);showToast(active?"Rotación automática activada":"Rotación automática pausada");});
+$("auto-rotate").addEventListener("click",()=>{const active=$("product-photo").classList.toggle("photo-motion");$("auto-rotate").classList.toggle("active",active);showToast(active?"Movimiento activado":"Movimiento pausado");});
 $("add-cart").addEventListener("click",()=>{const p=current();cart.push({...p,color:activeColor,size:activeSize,lineId:Date.now()});renderCart();showToast("Prenda añadida a tu bolsa");});
 function renderCart(){
  $("cart-count").textContent=cart.length;
