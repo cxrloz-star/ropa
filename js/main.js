@@ -12,11 +12,11 @@ function renderProduct(){
  activeColor=activeColor&&p.colors.some(c=>c.hex===activeColor)?activeColor:p.color;
  activeSize=p.sizes.includes(activeSize)?activeSize:p.sizes[0];
  $("product-name").textContent=p.name;$("product-category").textContent=p.label;$("product-price").textContent=money(p.price);$("product-description").textContent=p.description;
- const photo=$("product-photo");photo.src=p.image;photo.alt=p.name+" — fotografía de referencia";photo.onerror=()=>{photo.style.display="none";};photo.onload=()=>{photo.style.display="block";};
+ const photo=$("product-photo");photo.src=p.image;photo.alt=p.name+" — fotografía de referencia";photo.onerror=()=>{photo.style.display="none";photo.parentElement.classList.add("image-failed");};photo.onload=()=>{photo.style.display="block";photo.parentElement.classList.remove("image-failed");};
  $("current-index").textContent=String(products.indexOf(p)+1).padStart(2,"0");$("total-index").textContent=String(products.length).padStart(2,"0");
  $("model-loading").classList.remove("hidden");
- scene.setProduct(p,activeColor);
  setTimeout(()=>$("model-loading").classList.add("hidden"),350);
+ try{scene.setProduct(p,activeColor);}catch(error){console.warn("No se pudo mostrar el modelo 3D:",error);$("model-loading").classList.add("hidden");}
  $("color-options").innerHTML=p.colors.map(c=>`<button class="swatch ${c.hex===activeColor?"selected":""}" style="background:${c.hex}" title="${c.name}" aria-label="Color ${c.name}" data-color="${c.hex}"></button>`).join("");
  $("size-options").innerHTML=p.sizes.map(s=>`<button class="size-button ${s===activeSize?"selected":""}" data-size="${s}">${s}</button>`).join("");
  $("favorite-button").classList.toggle("selected",favorites.has(p.id));$("favorite-button").textContent=favorites.has(p.id)?"♥":"♡";
