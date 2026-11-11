@@ -11,7 +11,8 @@ function renderProduct(){
  const p=current();if(!p)return;
  activeColor=activeColor&&p.colors.some(c=>c.hex===activeColor)?activeColor:p.color;
  activeSize=p.sizes.includes(activeSize)?activeSize:p.sizes[0];
- $("product-name").textContent=p.name;$("product-category").textContent=p.label;$("product-price").textContent=money(p.price);$("product-description").textContent=p.description;\n const photo=$("product-photo");photo.src=p.image;photo.alt=p.name+" — fotografía de referencia";photo.onerror=()=>{photo.style.display="none";};photo.onload=()=>{photo.style.display="block";};
+ $("product-name").textContent=p.name;$("product-category").textContent=p.label;$("product-price").textContent=money(p.price);$("product-description").textContent=p.description;
+ const photo=$("product-photo");photo.src=p.image;photo.alt=p.name+" — fotografía de referencia";photo.onerror=()=>{photo.style.display="none";};photo.onload=()=>{photo.style.display="block";};
  $("current-index").textContent=String(products.indexOf(p)+1).padStart(2,"0");$("total-index").textContent=String(products.length).padStart(2,"0");
  $("model-loading").classList.remove("hidden");
  scene.setProduct(p,activeColor);
