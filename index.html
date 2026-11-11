@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f2ee">
+  <meta name="description" content="Clothes Closet: explora ropa streetwear en un vestidor 3D interactivo.">
+  <title>Clothes Closet — Streetwear 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="announcement">NUEVA COLECCIÓN · STREETWEAR ESSENTIALS <span>—</span> DROP 001</div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Clothes Closet inicio">CLOTHES<span>®</span><small>CLOSET</small></a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a class="active" href="#closet">TIENDA</a>
+      <a href="#categories">COLECCIÓN</a>
+      <a href="#about">NOSOTROS</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="search-toggle" aria-label="Buscar">⌕</button>
+      <button class="icon-button bag-button" id="cart-toggle" aria-label="Abrir carrito">BOLSA <span id="cart-count">0</span></button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" id="closet">
+      <div>
+        <p class="eyebrow">TU ESTILO, TU ESPACIO</p>
+        <h1>WEAR YOUR<br><span>OWN WORLD.</span></h1>
+      </div>
+      <p class="intro-copy">Piezas con actitud. Siluetas amplias.<br>Encuentra tu próximo outfit.</p>
+    </section>
+
+    <section class="shop-layout" aria-label="Vestidor virtual">
+      <aside class="side-panel">
+        <p class="eyebrow">EXPLORAR</p>
+        <div class="category-list" id="categories">
+          <button class="category active" data-category="all">Todo <span>08</span></button>
+          <button class="category" data-category="hoodie">Hoodies <span>02</span></button>
+          <button class="category" data-category="tee">Oversized tees <span>02</span></button>
+          <button class="category" data-category="pants">Pantalones <span>02</span></button>
+          <button class="category" data-category="sneakers">Sneakers <span>02</span></button>
+        </div>
+        <div class="side-note">
+          <span class="note-line"></span>
+          <p>01 / 08</p>
+          <strong>STREET<br>ESSENTIALS</strong>
+          <small>Diseñado para moverte a tu manera.</small>
+        </div>
+      </aside>
+
+      <div class="showroom">
+        <div class="showroom-top">
+          <span>VESTIDOR VIRTUAL <i>✳</i></span>
+          <span class="drag-hint"><b>↔</b> ARRASTRA PARA GIRAR</span>
+        </div>
+        <div class="stage" id="stage">
+          <div class="stage-glow"></div>
+          <button class="side-product side-product-left" id="previous-product" aria-label="Prenda anterior">
+            <span class="side-product-image"></span><span class="side-product-label">ANTERIOR</span>
+          </button>
+          <div class="model-loading" id="model-loading">PREPARANDO TU PRENDA<span>● ● ●</span></div>
+          <canvas id="product-canvas" aria-label="Modelo 3D de la prenda seleccionada"></canvas>
+          <button class="side-product side-product-right" id="next-product" aria-label="Prenda siguiente">
+            <span class="side-product-image"></span><span class="side-product-label">SIGUIENTE</span>
+          </button>
+          <div class="stage-index"><span id="current-index">01</span><i>/</i><span id="total-index">08</span></div>
+          <button class="rotate-hint" id="auto-rotate" aria-label="Activar rotación automática">⟳ <span>ROTAR</span></button>
+        </div>
+        <div class="product-info">
+          <div class="product-heading">
+            <div><p class="eyebrow" id="product-category">HOODIE / OVERSIZED</p><h2 id="product-name">Heavyweight Hoodie</h2></div>
+            <strong class="price" id="product-price">S/ 159.00</strong>
+          </div>
+          <p class="product-description" id="product-description">Una silueta amplia para todos los días, con caída relajada y carácter propio.</p>
+          <div class="product-controls">
+            <div class="control-group">
+              <span class="control-label">COLOR</span>
+              <div class="swatches" id="color-options"></div>
+            </div>
+            <div class="control-group size-control">
+              <span class="control-label">TALLA</span>
+              <div class="sizes" id="size-options"></div>
+            </div>
+            <div class="buy-actions">
+              <button class="add-cart" id="add-cart">AÑADIR A LA BOLSA <span>↗</span></button>
+              <button class="favorite-button" id="favorite-button" aria-label="Añadir a favoritos">♡</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection-strip" id="about">
+      <div><span class="eyebrow">CLOTHES CLOSET / 2026</span><h2>NO RULES. JUST<br><em>YOUR FIT.</em></h2></div>
+      <p>La ropa no define quién eres.<br>Pero puede mostrarle al mundo<br>cómo te sientes.</p>
+      <span class="strip-mark">CC®</span>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Bolsa de compras">
+    <div class="drawer-heading"><div><p class="eyebrow">TU SELECCIÓN</p><h2>Mi bolsa</h2></div><button id="close-cart" class="close-button" aria-label="Cerrar">×</button></div>
+    <div id="cart-items" class="cart-items"><p class="empty-cart">Tu bolsa está esperando nuevas piezas.</p></div>
+    <div class="cart-footer"><div><span>Subtotal</span><strong id="cart-subtotal">S/ 0.00</strong></div><button class="add-cart checkout-button" id="checkout-button">CONTINUAR <span>↗</span></button><small>Demo visual · No procesa pagos reales.</small></div>
+  </aside>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
