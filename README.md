@@ -1,25 +1,22 @@
-# Clothes Closet — Streetwear 3D
+# Clothes Closet — Streetwear
 
-Vestidor virtual de ropa urbana con catálogo interactivo y modelos 3D generados mediante Three.js.
+Ropero virtual de ropa urbana con catálogo visual, filtros y bolsa de compras de demostración.
 
-## Ver el proyecto
-Activa GitHub Pages desde **Settings → Pages → Deploy from a branch → main → / (root)** para publicar la web.
+## Cómo abrirlo (sin servidor)
+1. Descarga el repositorio como ZIP o clónalo.
+2. Descomprime la carpeta.
+3. Abre **index.html** con doble clic en Chrome, Edge o Firefox.
 
-## Ejecutar localmente
-Como el proyecto utiliza módulos JavaScript, abre la carpeta con un servidor local. Por ejemplo, con VS Code instala/usa Live Server y abre `index.html`.
+No necesitas XAMPP, Live Server, Node.js ni instalar dependencias.
 
-## Funciones
+## Incluye
+- Diseño adaptable a computadora y celular.
+- Ocho ilustraciones de prendas guardadas localmente en `assets/`.
 - Catálogo de hoodies, polos oversized, pantalones wide leg/cargo y sneakers.
-- Modelos 3D geométricos creados con Three.js.
-- Rotación con mouse o pantalla táctil y rotación automática.
-- Cambio de color y talla.
-- Filtros por categoría, favoritos y bolsa de compras de demostración.
-- Diseño adaptable a móviles.
+- Selector de color y talla.
+- Filtros por categoría, favoritos y bolsa de compras.
+- Navegación entre prendas y animación visual.
+- HTML, CSS y JavaScript separados.
 
-## Tecnologías
-- HTML5 y CSS3.
-- JavaScript ES Modules.
-- Three.js y OrbitControls (cargados desde jsDelivr).
-
-## Nota
-Los modelos 3D de esta primera versión son formas geométricas procedurales de demostración, no escaneos de prendas reales. La bolsa y el checkout son demostrativos y no procesan pagos.
+## Importante
+Las imágenes SVG están dentro del repositorio, por lo que no dependen de enlaces externos. Las tipografías usan fuentes del sistema. La bolsa y el checkout son demostrativos: no procesan pagos reales.
